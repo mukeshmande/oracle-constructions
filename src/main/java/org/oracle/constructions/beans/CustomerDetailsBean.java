@@ -1,7 +1,7 @@
 package org.oracle.constructions.beans;
 
 public class CustomerDetailsBean {
-
+    
     private long customerId;
     private long contractId;
     private String geozone;

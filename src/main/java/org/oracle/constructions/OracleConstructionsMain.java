@@ -2,6 +2,8 @@ package org.oracle.constructions;
 
 
 import org.oracle.constructions.beans.CustomerDetailsBean;
+import org.oracle.constructions.exception.CustomerDetailsException;
+import org.oracle.constructions.utils.ValidationUtility;
 
 import java.io.*;
 import java.util.*;
@@ -38,12 +40,25 @@ public class OracleConstructionsMain {
             String lineData[] = line.split(",");
             if (lineData.length == 6) {
                 CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
-                customerDetailsBean.setCustomerId(Long.parseLong(lineData[0]));
+
+                if(ValidationUtility.customerIdValidation(lineData[0]))
+                    customerDetailsBean.setCustomerId(Long.parseLong(lineData[0]));
+
+                if(ValidationUtility.contractIdValidation(lineData[1]))
                 customerDetailsBean.setContractId(Long.parseLong(lineData[1]));
+
+                if(ValidationUtility.geoZoneValidation(lineData[2]))
                 customerDetailsBean.setGeozone(lineData[2]);
+
+                if(ValidationUtility.teamProjectCodeValidation(lineData[3]))
                 customerDetailsBean.setTeamcode(lineData[3]);
+
+                if(ValidationUtility.teamProjectCodeValidation(lineData[4]))
                 customerDetailsBean.setProjectcode(lineData[4]);
+
+                if(ValidationUtility.buildDurationValidation(lineData[5]))
                 customerDetailsBean.setBuildduration(lineData[5]);
+
                 customerDetailsList.add(customerDetailsBean);
             }
 
