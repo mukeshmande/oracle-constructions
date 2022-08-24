@@ -1,60 +1,53 @@
 package org.oracle.constructions.utils;
 
+import org.oracle.constructions.exception.CustomerDetailsException;
+
 import java.util.regex.Pattern;
 
 public class ValidationUtility {
 
-    private static Pattern pattern = Pattern.compile("-?\\d+(\\.\\d+)?");
-    private static Pattern contractIdPattern = Pattern.compile("^[0-9]{4}$");
-    private static Pattern customerIdPattern = Pattern.compile("^[0-9]{7}$");
+    private static Pattern contractIdPattern = Pattern.compile("^\\d{4}$");
+    private static Pattern customerIdPattern = Pattern.compile("^\\d{7}$");
     private static Pattern geoZonePattern = Pattern.compile("^[a-z]{2}_[a-z]{4,5}");
 
     private static Pattern teamProjectCodePattern = Pattern.compile("^[A-Za-z0-9]{1,20}");
-    private static Pattern buildDurationPattern = Pattern.compile("^[0-9]+[s]$");
+    private static Pattern buildDurationPattern = Pattern.compile("^\\d+[s]$");
+
+    private static final String INVALID_INPUT = "Invalid Input";
 
 
-    public static boolean isNumeric(String strNum) {
-        if (strNum == null) {
-            return false;
+    public boolean customerIdValidation(String str) throws CustomerDetailsException {
+        if (str == null || !customerIdPattern.matcher(str).matches()) {
+            throw new CustomerDetailsException(INVALID_INPUT);
         }
-        return pattern.matcher(strNum).matches();
+        return true;
     }
 
-    public static boolean customerIdValidation(String str) {
-        if (str == null) {
-            return false;
+    public boolean contractIdValidation(String str) throws CustomerDetailsException {
+        if (str == null || !contractIdPattern.matcher(str).matches()) {
+            throw new CustomerDetailsException(INVALID_INPUT);
         }
-        return customerIdPattern.matcher(str).matches();
+        return true;
     }
 
-    public static boolean contractIdValidation(String str) {
-        if (str == null) {
-            return false;
+    public boolean geoZoneValidation(String str) throws CustomerDetailsException {
+        if (str == null || !geoZonePattern.matcher(str).matches()) {
+            throw new CustomerDetailsException(INVALID_INPUT);
         }
-        return contractIdPattern.matcher(str).matches();
+        return true;
     }
 
-    public static boolean geoZoneValidation(String str) {
-        if (str == null) {
-            return false;
+    public boolean teamProjectCodeValidation(String str) throws CustomerDetailsException {
+        if (str == null || !teamProjectCodePattern.matcher(str).matches()) {
+            throw new CustomerDetailsException(INVALID_INPUT);
         }
-        return geoZonePattern.matcher(str).matches();
+        return true;
     }
 
-    public static boolean teamProjectCodeValidation(String str) {
+    public boolean buildDurationValidation(String str) throws CustomerDetailsException {
         if (str == null) {
-            return false;
-        }
-        return teamProjectCodePattern.matcher(str).matches();
-    }
-
-    public static boolean buildDurationValidation(String str) {
-        if (str == null) {
-            return false;
+            throw new CustomerDetailsException(INVALID_INPUT);
         }
         return buildDurationPattern.matcher(str).matches();
     }
-
-
-
 }
