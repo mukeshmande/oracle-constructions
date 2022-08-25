@@ -10,7 +10,7 @@ import java.util.*;
 
 public class OracleConstructionsMain {
 
-    public static String data = "2343225,2345,us_east,RedTeam,ProjectApple,3445s\n" +
+    public static String testData = "2343225,2345,us_east,RedTeam,ProjectApple,3445s\n" +
             "1223456,2345,us_west,BlueTeam,ProjectBanana,2211s\n" +
             "3244332,2346,eu_west,YellowTeam3,ProjectCarrot,4322s\n" +
             "1233456,2345,us_west,BlueTeam,ProjectDate,2221s\n" +
@@ -19,11 +19,6 @@ public class OracleConstructionsMain {
     public static void main(String[] args) throws IOException {
         OracleConstructionsMain main = new OracleConstructionsMain();
 
-        ValidationUtility utility = new ValidationUtility();
-        Reader inputString = new StringReader(data);
-        BufferedReader reader = new BufferedReader(inputString);
-        String line;
-
         String lineText;
         List<String> inputLines = new ArrayList<>();
         System.out.println("Enter input in following format & sequence:");
@@ -31,23 +26,22 @@ public class OracleConstructionsMain {
         System.out.println("Press Enter key to add next input on next line & press Enter key two times to submit input\n");
         System.out.println("Enter Input from here :- ");
 
-//        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
-//        while ((lineText = stdin.readLine()) != null && lineText.length()!= 0) {
-//            inputLines.add(lineText);
-//        }
+        BufferedReader stdin = new BufferedReader(new InputStreamReader(System.in));
+        while ((lineText = stdin.readLine()) != null && lineText.length()!= 0) {
+            inputLines.add(lineText);
+        }
 
 
         List<CustomerDetailsBean> customerDetailsList = new ArrayList<>();
         try {
-            while ((line = reader.readLine()) != null) {
-//        for(String line : inputLines){
+        for(String line : inputLines){
                 String lineData[] = line.split(",");
 
                 CustomerDetailsBean customerDetailsBean = new CustomerDetailsBean();
 
-                if (utility.customerIdValidation(lineData[0]) && utility.contractIdValidation(lineData[1])
-                        && utility.geoZoneValidation(lineData[2]) && utility.teamProjectCodeValidation(lineData[3])
-                        && utility.teamProjectCodeValidation(lineData[4]) && utility.buildDurationValidation(lineData[5])) {
+                if (ValidationUtility.customerIdValidation(lineData[0]) && ValidationUtility.contractIdValidation(lineData[1])
+                        && ValidationUtility.geoZoneValidation(lineData[2]) && ValidationUtility.teamProjectCodeValidation(lineData[3])
+                        && ValidationUtility.teamProjectCodeValidation(lineData[4]) && ValidationUtility.buildDurationValidation(lineData[5])) {
                     customerDetailsBean.setCustomerId(Long.parseLong(lineData[0]));
                     customerDetailsBean.setContractId(Long.parseLong(lineData[1]));
                     customerDetailsBean.setGeozone(lineData[2]);

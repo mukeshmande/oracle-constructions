@@ -19,3 +19,4 @@ The application can be scaled with some additional features mentioned below:
 * Input can be provided using CSV or TXT file.
 * Output can be written in the file.
 * Additional metrics can be calculated based on requirements.
+* Logs can be added at every stage.

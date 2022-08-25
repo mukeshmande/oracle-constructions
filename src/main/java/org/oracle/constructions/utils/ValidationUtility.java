@@ -16,38 +16,38 @@ public class ValidationUtility {
     private static final String INVALID_INPUT = "Invalid Input";
 
 
-    public boolean customerIdValidation(String str) throws CustomerDetailsException {
+    public static boolean customerIdValidation(String str) throws CustomerDetailsException {
         if (str == null || !customerIdPattern.matcher(str).matches()) {
             throw new CustomerDetailsException(INVALID_INPUT);
         }
         return true;
     }
 
-    public boolean contractIdValidation(String str) throws CustomerDetailsException {
+    public static boolean contractIdValidation(String str) throws CustomerDetailsException {
         if (str == null || !contractIdPattern.matcher(str).matches()) {
             throw new CustomerDetailsException(INVALID_INPUT);
         }
         return true;
     }
 
-    public boolean geoZoneValidation(String str) throws CustomerDetailsException {
+    public static boolean geoZoneValidation(String str) throws CustomerDetailsException {
         if (str == null || !geoZonePattern.matcher(str).matches()) {
             throw new CustomerDetailsException(INVALID_INPUT);
         }
         return true;
     }
 
-    public boolean teamProjectCodeValidation(String str) throws CustomerDetailsException {
+    public static boolean teamProjectCodeValidation(String str) throws CustomerDetailsException {
         if (str == null || !teamProjectCodePattern.matcher(str).matches()) {
             throw new CustomerDetailsException(INVALID_INPUT);
         }
         return true;
     }
 
-    public boolean buildDurationValidation(String str) throws CustomerDetailsException {
-        if (str == null) {
+    public static boolean buildDurationValidation(String str) throws CustomerDetailsException {
+        if (str == null || !buildDurationPattern.matcher(str).matches()) {
             throw new CustomerDetailsException(INVALID_INPUT);
         }
-        return buildDurationPattern.matcher(str).matches();
+        return true;
     }
 }
