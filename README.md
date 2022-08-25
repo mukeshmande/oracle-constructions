@@ -6,7 +6,7 @@ Repository contains code for Oracle Construction & Engineering Technical Challen
     
 The application accepts input separated by comma(",") & also multi line input from console/terminal.    
 The input must contain below-mentioned fields in given order:
-####customerId,contractId,geozone,teamcode,projectcode,buildduration
+#### customerId,contractId,geozone,teamcode,projectcode,buildduration
 
 ## How to run application
 Build the application using below command:
